@@ -1,0 +1,18 @@
+#!/bin/bash
+set -euo pipefail #exitif any command fails
+
+project_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+cd "$project_root"
+
+mkdir -p build
+#compile the java source code
+javac --release 21 -d build src/Main.java
+
+#create a jar file from the compiled classes / package the compiled classes into a jar file
+jar cfe build/app.jar Main -C build .
+
+#verify the content of the build output
+ls -l build
+
+#run it without Docker to verify that it works
+java -jar build/app.jar 3

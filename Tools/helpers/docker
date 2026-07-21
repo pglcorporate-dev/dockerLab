@@ -1,0 +1,27 @@
+#!/bin/bash
+set -euo pipefail
+
+project_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+cd "$project_root"
+# 1. Force the script to execute at the project root directory
+# (Similar to your Terraform variable requirement)
+cd "$(dirname "$0")" || exit 1
+
+echo "Checking Docker daemon status..."
+
+# 2. Check if Docker is running
+if ! docker info > /dev/null 2>&1; then
+    echo "❌ Error: Docker is NOT running! Please start Docker Desktop."
+    exit 1
+fi
+
+echo "✅ Docker is running. Starting build..."
+
+# 3. Build the Docker image
+docker build -t hello-java .
+sleep 5
+#list the images to verify the build
+docker images --filter "reference=hello-java"
+sleep 2
+# 4. Run the Docker container
+docker run --rm hello-java 
