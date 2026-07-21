@@ -10,7 +10,7 @@ javac --release 21 -d build src/Main.java
 
 #create a jar file from the compiled classes / package the compiled classes into a jar file
 jar cfe build/app.jar Main -C build .
-
+echo "Build complete"
 #verify the content of the build output
 ls -l build
 

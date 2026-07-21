@@ -17,7 +17,7 @@ public class Main {
             }
         } else {
             System.out.println("No arguments provided. Using default: 5000ms");
-            iterations = 5000;
+            iterations = 3;
         }
 
         while (counter <iterations) {
@@ -26,7 +26,7 @@ public class Main {
             counter ++;
 
             try {
-                Thread.sleep(5000);
+                Thread.sleep(500);
             } catch (InterruptedException e) {
                 break;
             }

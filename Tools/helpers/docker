@@ -3,9 +3,6 @@ set -euo pipefail
 
 project_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 cd "$project_root"
-# 1. Force the script to execute at the project root directory
-# (Similar to your Terraform variable requirement)
-cd "$(dirname "$0")" || exit 1
 
 echo "Checking Docker daemon status..."
 
